@@ -45,14 +45,17 @@ Ensure that the Pull Request:
 - Has a meaningful name
 - Contains only commits that (by name) are related to the feature being developed
 - Contains at least one commit referencing the `story id` of the feature in Pivotal Tracker
+ 
 #### Code Review
 Go over the files that have changed using the `Files Changed` tab on GitHub. For each change, asses: 
 - Code style
-- Appliance of [SOLID principles](http://en.wikipedia.org/wiki/SOLID_(object-oriented_design))
-- Alignment with general way things are done in the app
+- Appliance of [SOLID principles](http://en.wikipedia.org/wiki/SOLID_\(object-oriented_design\))
+- Alignment with general way things are done in the project
 - Alignment with framework best practises when using external frameworks and open source projects
 - Isolation of dependencies (using wrappers / adapters)
 - Integrity of project structure (no personal / project files)
+- Relevancy to the feature being developed
+
 #### Merging
 When all is well and after communicating with the author of the PR around any issues that may arise, The following procedure should be followed with the hope that parts of it will be one day automated:
 - Merge the feature to the develop branch.
