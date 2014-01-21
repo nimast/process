@@ -22,7 +22,7 @@ Pick up the top task from the backlog of the related project in pivotal tracker.
 If the first story doesn't contain any of these, go forward to the next one and inform the development manager. When you find a suitable feature, press the Start button on pivotal tracker.
 
 ### Getting ready to develop
-On your own copy of the repository, fork the `develop` branch to create a new branch with the `feature/` prefix and a meaningful name describing the feature you are about to develop. Use this branch exclusively for any commits related to the feature being worked on. Never use it for anything else.
+On your own copy of the repository, Branch out of the `develop` branch to create a new branch with the `feature/` prefix and a meaningful name describing the feature you are about to develop. Use this branch exclusively for any commits related to the feature being worked on. Never use it for anything else.
 
 ### Developing
 Write any necessary code needed for the feature you are about to develop following the project's styleguide, the design specification and the HLD. Author unit tests wherever appropriate. We don't have coverage goals, just make sure the error prone areas of the feature have robust tests. Work in small, reasonable chunks and commit freely to the feature branch you're working on, using meaningful commit messages.
@@ -63,3 +63,30 @@ When all is well and after communicating with the author of the PR around any is
 - Run integration tests on it (rollback the deployment if they fail)
 - If the deployment succeeded, mark started stories form pivotal mentioned in the commits as deployed. 
 - Notify the team that a new version is available
+
+## Parallel development
+Our git workflow setup is optimized to not stand in your way when you are the only developer currently working on a repository, while maintaining our process and enabling parallel work when it is needed. The following section describes the additional actions that might be required when multiple developers are working on the same master repository.
+### Terminology
+Throughout this document and here on after the following terminology is applied:
+- `master repository` the master copy of a repository, the one under the `learni` organization account.
+- `fork` a copy of the repository under a developer's account.
+- `branch out` creating a new branch from the branch we 'branch out' from.
+
+### Fixing bugs in a release while developing other features
+This is when someone is working on bug fixes in an upcoming release, and another one is developing features that shouldn't be included in that release. In this case, they can't work simultaneously on the `develop` branch. 
+- The person working on the release will branch out of `develop` to a branch with the `release/` prefix and the version number as the branch name on the master repository.
+- The person working on the release, on his copy of the repository, will fork this branch to create PRs to the release branch on the master repository.
+- The person working on the features will PR to `develop` as usual.
+- When the release is done, just like in [gitflow](https://www.atlassian.com/git/workflows#!workflow-gitflow), the release branch will be merged to `master` **and** to `develop` on the master repository.
+
+### Working on breaking changes in parallel
+This is when there's a big breaking change (like a major API change or a major update in a library) that needs to be worked on in parallel by more than one developer. 
+- The first one to reach this 'breaking' feature will create a branch of the `develop` branch on the master repository with the `feature/` prefix and a self explanatory name as the branch name.
+- All developers working on this breaking feature will branch out of this branch on their forks and PR back to it.
+- Once the feature is done, just like in gitflow, it is merged back to the `develop` branch on the master repository.
+
+### Applying a hotfix
+This is when we need to make a slight change to the production code after progress has already been made on the `develop` branch.
+- If this is a small change that can be made by one person, he will branch out of `master` on his synced fork to create a new branch with the `hotfix/` prefix and a meaningful name. He will then make the change and PR this branch with `master` on the master repository as the target of the PR.
+- If this is a larger change needs to be worked on by multiple developers, the hotfix branch should be created on the master repository, with all developers working on the change PRing to that branch. 
+- After all work is done, just like in gitflow, we merge the hotfix branch to `master` **and** to `develop`.
