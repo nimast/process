@@ -96,7 +96,7 @@ This is when we need to make a slight change to the production code after progre
 ###Branch name tips
 - `develop` branch: The last working development version(pull from this one).
 - `master` branch: The production version. (don’t touch :) )
-####New branches names(use underscores):
+- New branches names(use underscores):
 - `feature/feature_name`
 - `hotfix/fix_name`
 - `release/`
