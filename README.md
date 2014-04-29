@@ -90,3 +90,54 @@ This is when we need to make a slight change to the production code after progre
 - If this is a small change that can be made by one person, he will branch out of `master` on his synced fork to create a new branch with the `hotfix/` prefix and a meaningful name. He will then make the change and PR this branch with `master` on the master repository as the target of the PR.
 - If this is a larger change needs to be worked on by multiple developers, the hotfix branch should be created on the master repository, with all developers working on the change PRing to that branch. 
 - After all work is done, just like in gitflow, we merge the hotfix branch to `master` **and** to `develop`.
+
+##Github and SourceTree
+
+###Branch name tips
+develop branch: The last working development version(pull from this one).
+master branch: The production version. (don’t touch :) )
+New branches names(use underscores):
+1) feature/feature_name
+2) hotfix/fix_name
+3) release/
+
+###New project
+In bookmarks window click the add repo button.
+Source Path/ URL: take this from the Github web page.
+Change the name of this repo to upstream.
+Right click remotes and add your own repo(if you don’t have one, create it using Github webpage).
+
+###New local branch from remote repo
+Right click the remote repo’s branch and click checkout.
+
+###New local branch from existing local branch
+Check out the branch you want to branch from (default: develop).
+Right click the branch and select new branch.
+The new branch should have a meaningful name and start with hotfix/, feature/.
+
+###Update local develop branch
+Check out the branch you want to pull to (default: develop).
+Right click upstream.develop branch, click pull.
+
+###Commit, push and pull request
+*Before committing make sure all UT work.
+Commit your changes, make sure to write a meaningful comment.
+Right click your local branch and click push to YourRemoteRepo(Not upstream!), use the exact same name, folder as your local branch.(f.e: local: hotfix/FlashCrashFix, MyRepo: hotfix/FlashCrashFix)
+Right click your remote branch and click pull request.
+This opens github in a browser, fill in a pull request comment and approve.
+
+###Extra commits on the same branch
+As long as your pull request is pending, every time you push new commits, they will be added to the pull request.
+Note that the admin won’t be notified of this commit, you should write in the comment @username if you want that user to be notified of your new commits.
+If your pull request is closed, you will have to create a new one.
+You might want to update your branch, first update your local develop branch, then merge your develop branch and your working branch.
+
+###Stash
+Use this if you want to backup uncommitted changes.
+Click the stash button, and choose a name. All the pending changes will reset, and saved in a stash.
+You can then get these changes back, by right clicking the stash(left bottom corner) and choosing apply stash.
+*You can have multiple stashes.
+**You can apply a stash on different branch than the one it was made on.
+
+###Fetch
+Use button to simply refresh your source tree ui.
